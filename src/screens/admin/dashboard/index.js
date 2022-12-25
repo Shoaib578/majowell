@@ -45,6 +45,17 @@ const items = [
     }
 ]
 export default class AdminDashboard extends React.Component{
+
+    navigate=(item)=>{
+        if(item == "Manage Coaches"){
+            this.props.navigation.navigate("list_of_coaches")
+        }
+
+        if(item == "My Account"){
+            this.props.navigation.navigate("profile")
+
+        }
+    }
     render(){
         return(
             <View style={styles.container}>
@@ -76,7 +87,7 @@ export default class AdminDashboard extends React.Component{
                 <View style={{flexDirection:"row",flexWrap:"wrap",padding:20,justifyContent:"space-between"}}>
 
                     {items.map((data,index)=>{
-                        return  <TouchableOpacity key={index} style={styles.item}>
+                        return  <TouchableOpacity onPress={()=>this.navigate(data.title)} key={index} style={styles.item}>
                         <Image source={data.image} style={{ width:80,height:80 }}/>
                         <Text style={{color:"black"}}>{data.title}</Text>
                     </TouchableOpacity>
